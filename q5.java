@@ -1,13 +1,18 @@
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Set;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class q5
 {
+
 	static BufferedReader in;
 
 	public static void main( String[] args ) throws IOException
@@ -22,17 +27,44 @@ public class q5
 		in.close();
 	}
 
+	void q5c() throws IOException
+	{
+		Stack<Character> stack = new Stack<>();
+		String next = in.readLine();
+		int start = 0, end = next.length() - 1;
+		while ( next.charAt( start ) == ')' )
+			start++;
+		while ( next.charAt( end ) == '(' )
+			end--;
+		if ( start >= end )
+		{
+			System.out.println( "0 1" );
+		}
+		else
+		{
+			String substring = next.substring( start, end + 1 );
+			for ( char c : substring.toCharArray() )
+			{
+				if ( c == '(' )
+					stack.push( c );
+				if ( c == ')' )
+					stack.pop();
+			}
+
+		}
+	}
+
 	void q5b() throws IOException
 	{
-		List<String> list = new ArrayList<>();
+		LinkedList<String> list = new LinkedList<>();
 		int maxlen = 0, adjustLeft = 1, adjustRight = 0;
 		String next;
 		while ( ( next = in.readLine() ) != null )
 		{
-
 			list.add( next );
 			maxlen = Math.max( maxlen, next.length() );
 		}
+		// System.out.println( list );
 		// maxlen += 2;
 		String print = "";
 		for ( int i = 0; i < maxlen + 2; i++ )
@@ -57,7 +89,9 @@ public class q5
 		}
 		for ( int i = 0; i < maxlen + 2; i++ )
 			print += "*";
-		System.out.println( print );
+		PrintWriter printWriter = new PrintWriter( new BufferedOutputStream( System.out ) );
+		printWriter.println( print );
+		printWriter.flush();
 	}
 
 	void q5a() throws IOException
@@ -87,4 +121,41 @@ public class q5
 		System.out.println( count );
 	}
 
+}
+
+/** Class for buffered reading int and double values */
+class Reader
+{
+	static BufferedReader reader;
+	static StringTokenizer tokenizer;
+
+	/** call this method to initialize reader for InputStream */
+	static void init( InputStream input )
+	{
+		reader = new BufferedReader(
+				new InputStreamReader( input ) );
+		tokenizer = new StringTokenizer( "" );
+	}
+
+	/** get next word */
+	static String next() throws IOException
+	{
+		while ( !tokenizer.hasMoreTokens() )
+		{
+			// TODO add check for eof if necessary
+			tokenizer = new StringTokenizer(
+					reader.readLine() );
+		}
+		return tokenizer.nextToken();
+	}
+
+	static int nextInt() throws IOException
+	{
+		return Integer.parseInt( next() );
+	}
+
+	static double nextDouble() throws IOException
+	{
+		return Double.parseDouble( next() );
+	}
 }
