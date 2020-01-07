@@ -16,8 +16,9 @@ class update
 		writeToFiles(files);
 		Collections.sort(list);
 		sb.append("|Contest|Question|Rank|\n|-|-|-|\n");
+		int count = 1;
 		for(Question q : list)
-			sb.append("|" + q.contest + "|" + q.question + "|\n");
+			sb.append("|" + count++ + "|" + q.contest + "|" + q.question + "|\n");
 		System.out.printf("%s\n", sb.toString());
 		writer.write(sb.toString());
 		writer.close();
