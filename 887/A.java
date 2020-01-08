@@ -1,3 +1,5 @@
+// http://codeforces.com/contest/887/submission/68328515
+
 import java.math.*;
 import java.util.*;
 import java.io.*;
@@ -32,6 +34,6 @@ public class A {
     }
 
 // result
-// http://codeforces.com/contest/887/submission/68328515
+
 
 }

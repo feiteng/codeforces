@@ -1,3 +1,4 @@
+// http://codeforces.com/contest/977/submission/68324610
 import java.math.*;
 import java.util.*;
 import java.io.*;
@@ -32,5 +33,5 @@ public class A {
         System.out.println(a);
     }
 
-    // result http://codeforces.com/contest/977/submission/68324610
+
 }
