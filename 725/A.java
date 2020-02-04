@@ -1,4 +1,4 @@
-// #
+// https://codeforces.com/contest/725/submission/68385647
 import java.math.*;
 import java.util.*;
 import java.io.*;
@@ -7,7 +7,7 @@ public class A {
   
     static BufferedReader in;
     static String file = "../in";
- 
+
     public static void main(String[] args) throws Exception
     {
         int test = 0,   // 0 for local testing, 1 for std input
@@ -21,24 +21,29 @@ public class A {
         /****************************************************/
         /****************************************************/
 
-        int[] cup = new int[4];
-        int pos = Integer.valueOf(in.readLine());
-        cup[pos] = 1;
-        for(int i = 0; i < 3; i++) {
-            String str = in.readLine();
-            int a = str.charAt(0) - '0',
-                b = str.charAt(2) - '0';
-            int t = cup[a];
-            cup[a] = cup[b];
-            cup[b] = t;
+        
+        int n = Integer.valueOf(in.readLine());
+        String str = in.readLine();
+        int i = 0, j = n - 1;
+        
+        int left = 0;
+        if(str.charAt(i) == '<')
+        {
+            while(i < n && str.charAt(i) == '<') 
+                i++;
+            left = i;
         }
-        for(int i = 1; i <= 3; i++) 
-            if(cup[i] > 0) 
-                System.out.println(i);
+        
+        int right = 0;
+        if(str.charAt(j) == '>')
+        {
+            while(j >= 0 && str.charAt(j) == '>') 
+                j--;
+            if(j < 0) right = n;
+            else right = n - 1 - j;
+        }
+        System.out.println(left + right);
+        // String[] sp = in.readLine().split(" ");
+        
     }
-
-// result
-// 
-
 }
-
