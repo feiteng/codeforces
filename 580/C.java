@@ -1,4 +1,4 @@
-// 
+// https://codeforces.com/contest/580/submission/68567726
 import java.math.*;
 import java.util.*;
 import java.io.*;
@@ -63,13 +63,10 @@ public class C {
         if(val != prev) count = val;
         else count += val;
         
-        if(test == 0) System.out.printf("%d %d %d\n", cur, count, cap);
+        // if(test == 0) System.out.printf("%d %d %d\n", cur, count, cap);
         if(count > cap) return 0;
 
-        if(map.get(cur).isEmpty())
-        {
-            return 1;
-        }
+        boolean found = false;
 
         int re = 0;
 
@@ -77,8 +74,11 @@ public class C {
         {
             if(visited.contains(next)) continue;
             visited.add(next);
+            found = true;
             re += dfs(next, count, val, ary, cap, map, visited);
         }
+
+        if(!found) re = 1;
 
         return re;
     }
