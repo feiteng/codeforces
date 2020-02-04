@@ -24,12 +24,12 @@ public class update
 		writeToFiles(files);
 		Collections.sort(list);
 		sb.append("|Count|Contest|Question|Submission Link|Last Modified|Rank|Tags|\n" + 
-			"|-|-|-|-|-|-|\n");
+			"|-|-|-|-|-|-|-|\n");
 		int count = 1;
 		for(Question q : list)
 			sb.append("|" + count++ + "|" + q.contest + "|" + q.question 
 					+ "|" + getLink(q.submissionLink) + "|" + q.lastModified + "|"
-					+ q.rating + "|" + q.tags + "\n");
+					+ q.rating + "|" + q.tags + "|\n");
 		System.out.printf("%s\n", sb.toString());
 		writer.write(sb.toString());
 		writer.close();
